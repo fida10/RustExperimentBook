@@ -1,59 +1,24 @@
-use std::io; //line to import module 
-use std::cmp::Ordering;
-use rand::Rng;
+mod chp_two_guessing_game;
+mod chp_three_common_programming_concepts;
+mod chp_three_ending_exercises;
 
 fn main() {
-    println!("Guess a number!"); 
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-    /*
-    * Using "thread_rng" method to generate a number between 1 and 100
-    * Range is specified in the gen_range() function
-     */
-    //println!("The secret number is {}", secret_number);
+    chp_two_guessing_game::guessing_game();
 
-    loop{
-        println!("Input your guess: "); //print statements
+    chp_three_common_programming_concepts::question_two();
+    chp_three_common_programming_concepts::loop_example_two();
+    chp_three_common_programming_concepts::loop_example(10);
+    chp_three_common_programming_concepts::another_function(23);
+    chp_three_common_programming_concepts::printTwoParam(45, 7.5);
+    let x: bool = chp_three_common_programming_concepts::returnSomething();
+    println!("{}", x);
+    println!("{}", chp_three_common_programming_concepts::returnSomething());
+    println!("{}", chp_three_common_programming_concepts::returnNumber());
+    println!("{}", chp_three_common_programming_concepts::returnNumberWithParameter(45));
+    chp_three_common_programming_concepts::if_statement(25);
+    println!("{}", chp_three_common_programming_concepts::if_statement_with_let());
 
-        let mut guess = String::new();
-        /*
-        * Create a variable in Rust with "let" keyword
-        * "mut" means the variable is changeable. All variables are final by default
-        * "guess" is the name of the variable
-        * "String" is the type of variable; in this case, a string.
-        * new() creates a new, empty String. 
-        * This will not work with comparison to integers. We must convert to an integer, which we do below
-        */
-        
-        io::stdin() //using the input function Stdin
-            .read_line(&mut guess) //this is the line that actually gets input from the user (read_line function)
-            //& indicates that this "guess" is not a variable but a reference
-            //read_line can return either OK or Err. This return value is called an enum, a type that can take multiple forms
-            .expect("Failed to read line");
-            //kind of like a try/catch block. This expect will trigger if read_line returns "Err"
-            //This is helpful for debugging code as it gives us an error message.
-
-            let guess: u32 = match guess.trim().parse(){
-                Ok(num) => num,
-                Err(_) => continue,
-            };
-            //Ok executes if user inputs a number
-            //Err executes if user inputs a non number, will continue with the program if Err is hit
-        //must be put after input as before, it is null
-
-        println!("You guessed: {}", guess);
-        //we cannot print variables directly. In order to print "guess", we use substitution
-        //This involves the paranthesis. Values placed after the comma go into the paranthesis
-        //So this will print "You guessed <guess>"
-        
-        match guess.cmp(&secret_number){
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too large!"),
-            Ordering::Equal => {
-                println!("Correct!");
-                break;
-            },
-        }
-    }   
-
+    println!("{}", chp_three_ending_exercises::convert_f_to_c(46.0));
+    println!("{}", chp_three_ending_exercises::convert_c_to_f(29.0));
 }
