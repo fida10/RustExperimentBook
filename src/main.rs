@@ -21,4 +21,6 @@ fn main() {
 
     println!("{}", chp_three_ending_exercises::convert_f_to_c(46.0));
     println!("{}", chp_three_ending_exercises::convert_c_to_f(29.0));
+
+    println!("{}", chp_three_ending_exercises::fibonacci_series(0));
 }

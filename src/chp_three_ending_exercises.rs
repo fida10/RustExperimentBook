@@ -10,3 +10,27 @@ pub fn convert_c_to_f(cel : f64) -> f64 {
     return far;
 }
 
+pub fn fibonacci_series(n: u64) -> u64 {
+    let mut first_num = 0;
+    let mut second_num = 1;
+    
+    if(n < 3 && n != 0) {
+        return n - 1;
+    } else if (n == 0){
+        println!("YOU HAVE ENTERED AN INVALID NUMBER!");
+        return 0;
+    }
+
+    let mut counter: u64 = 3;
+    let mut currentNum: u64 = 0;
+    while(counter <= n){
+        currentNum = first_num + second_num;
+        first_num = second_num;
+        second_num = currentNum;
+
+        counter += 1;
+    }
+
+    return currentNum;
+}
+
